@@ -1,0 +1,45 @@
+
+.dark{
+    background-color: black;
+    color:white
+}
+
+.light{
+    background-color: white;
+    color: grey;
+}
+
+.login{
+    margin-left: auto;
+}
+
+.list-group-item-dark{
+    background-color: rgb(26, 25, 25);
+    color:white
+}
+
+.edit-image-thumbnail{
+    margin-right: 1em;
+}
+
+.darkLG :hover{
+    background-color: rgb(39, 38, 38);
+    color:white;
+}
+
+.lightLG :hover{
+    background-color: rgb(248, 248, 248);
+    color:grey;
+}
+
+.slide-buttons :hover{
+    background-color: transparent;
+}
+
+@media screen and (min-width: 992px) {
+    .Posts{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

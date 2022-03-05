@@ -1,0 +1,51 @@
+.nav-feature{
+    color: white;
+    border-bottom: 0.25rem solid transparent;
+}
+
+.nav-feature:hover{
+    color: rgb(216, 208, 208);
+    border-bottom: 0.25rem solid white;
+
+}
+
+.main{
+    background-image: linear-gradient(rgba(0,0,0,0.91), rgba(0,0,0,0.7)),
+    url("https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+    background-size: cover;
+    background-position: center;
+
+}
+
+.body1{
+    margin-top: 10rem;
+}
+
+.body2{
+    margin-bottom: 5rem;
+}
+
+.body3{
+    margin-top: 5rem;
+}
+
+.line{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.box{
+    overflow: auto;
+    height: 30rem;
+    width: 38rem;
+}
+
+
+@media screen and (max-width: 850px) {
+    .box{
+        width: 20rem;
+        height: 21rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

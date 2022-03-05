@@ -1,0 +1,25 @@
+<% layout('layout/boilerplate') %>
+    <div class="Posts mb-3">
+        <h1>Create a New Listing</h1>
+        <br>
+        <form class="" action="/posts" method="POST">
+            <div>
+                <label class="form-label" for="title">Name:</label>
+                <input class="form-control" type="text" name="title" id="title" placeholder="Title" required>
+            </div>
+
+            <br>
+            <label class="form-label" for="text">About:</label>
+            <section>
+                <textarea class="form-control" name="text" id="text" cols="100" rows="10"
+                    placeholder="Say what you want to say here"></textarea>
+            </section>
+            <label class="form-label mt-3" for="inputGroupFile03">Image URL: </label>
+            <div class="mb-3">
+                <input class="form-control" type="text" id="image" name="image">
+            </div>
+
+            <button class="btn btn-sm btn-outline-secondary">Post</button>
+        </form>
+        <a class="mt-3 btn btn-sm btn-outline-secondary" href="/">Back to All Listings</a>
+    </div>
