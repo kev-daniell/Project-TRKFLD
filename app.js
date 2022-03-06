@@ -12,12 +12,13 @@ const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const Post = require('./models/posts');
 const multer = require('multer')
-const { storage } = require('./cloudinary/index')
+const { storage, cloudinary } = require('./cloudinary/index')
 const upload = multer({ storage })
 
 
 
 const dbURL = process.env.DB_URL
+// const dbURL = 'mongodb://localhost:27017/takehome'
 
 
 mongoose.connect(dbURL,
@@ -85,29 +86,29 @@ app.get('/posts/:id/edit', async (req, res) => {
 //updating a listing 
 app.patch('/posts/:id', upload.array('image'), async (req, res) => {
     const { id } = req.params;
-    const { title, text, image } = req.body;
-    const currentPost = await Post.findByIdAndUpdate(id, { title, text, image }, { runValidators: true })
+    const { title, text } = req.body;
+    const currentPost = await Post.findByIdAndUpdate(id, { title, text }, { runValidators: true })
 
-    // const images = req.files.map(f => ({ url: f.path, filename: f.filename }))
-    // currentPost.image.push(...images)
-    // await currentPost.save()
-    // if (req.body.deleteImages) {
-    //     for (let filename of req.body.deleteImages) {
-    //         await cloudinary.uploader.destroy(filename)
-    //     }
-    //     await currentPost.updateOne({ $pull: { image: { filename: { $in: req.body.deleteImages } } } })
-    // }
+    const images = req.files.map(f => ({ url: f.path, filename: f.filename }))
+    currentPost.image.push(...images)
+    await currentPost.save()
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename)
+        }
+        await currentPost.updateOne({ $pull: { image: { filename: { $in: req.body.deleteImages } } } })
+    }
 
     res.redirect(`/posts/${id}`)
 })
 
 
 //making new listing 
-app.post('/posts', async (req, res) => {
-    const { title, text, image } = req.body;
+app.post('/posts', upload.array('image'), async (req, res) => {
+    const { title, text } = req.body;
     const author = "Test User"
-    const newPost = new Post({ author, title, text, image })
-    //newPost.image = req.files.map(f => ({ url: f.path, filename: f.filename }))
+    const newPost = new Post({ author, title, text })
+    newPost.image = req.files.map(f => ({ url: f.path, filename: f.filename }))
     await newPost.save()
     res.redirect('/')
 })

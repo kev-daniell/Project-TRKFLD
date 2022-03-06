@@ -1,6 +1,16 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+const imageSchema = new Schema({
+    url: String,
+    filename: String
+})
+
+imageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200')
+})
+
+
 
 const postSchema = new Schema({
     author: {
@@ -14,9 +24,7 @@ const postSchema = new Schema({
     text: {
         type: String
     },
-    image: {
-        type: String
-    }
+    image: [imageSchema]
 })
 
 

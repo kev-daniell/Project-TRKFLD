@@ -2,7 +2,7 @@
     <div class="Posts mb-3">
         <h1>Create a New Listing</h1>
         <br>
-        <form class="" action="/posts" method="POST">
+        <form class="" action="/posts" method="POST" enctype="multipart/form-data">
             <div>
                 <label class="form-label" for="title">Name:</label>
                 <input class="form-control" type="text" name="title" id="title" placeholder="Title" required>
@@ -15,9 +15,14 @@
                     placeholder="Say what you want to say here"></textarea>
             </section>
             <label class="form-label mt-3" for="inputGroupFile03">Image URL: </label>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <input class="form-control" type="text" id="image" name="image">
+            </div> -->
+            <div class="input-group mb-3">
+                <input name="image" type="file" class="form-control" id="inputGroupFile03"
+                    aria-describedby="inputGroupFileAddon03" aria-label="Upload" multiple>
             </div>
+
 
             <button class="btn btn-sm btn-outline-secondary">Post</button>
         </form>

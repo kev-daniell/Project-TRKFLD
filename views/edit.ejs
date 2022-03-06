@@ -2,7 +2,7 @@
     <div class="Posts">
         <h1>Edit Your Post</h1>
         <br>
-        <form class="" action="/posts/<%=post._id%>?_method=PATCH" method="POST">
+        <form class="" action="/posts/<%=post._id%>?_method=PATCH" method="POST" enctype="multipart/form-data">
             <p>User: <%= post.author %>
             </p>
             <div>
@@ -20,8 +20,26 @@
                 <textarea class="form-control" name="text" id="text" cols="100" rows="10"><%= post.text %> </textarea>
             </section>
             <label class="form-label mt-3" for="inputGroupFile03">Image URL: </label>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <input class="form-control" value="<%= post.image%> " type="text" id="image" name="image">
+            </div> -->
+            <div class="input-group mb-3">
+                <input name="image" type="file" class="form-control" id="inputGroupFile03"
+                    aria-describedby="inputGroupFileAddon03" aria-label="Upload" multiple>
+            </div>
+
+            <div class="mb-3 d-inline-flex table-responsive">
+                <% post.image.forEach((img, i)=> {%>
+                    <div class="edit-image-thumbnail">
+                        <img class="img-thumbnail" src="<%= img.thumbnail %>" alt="picture">
+                        <br>
+                        <div class="form-check-inline">
+                            <input id="image-<%= i %>" type="checkbox" name='deleteImages[]'
+                                value="<%= img.filename %>">
+                            <label for="image-<%= i %>">Delete?</label>
+                        </div>
+                    </div>
+                    <% }) %>
             </div>
 
             <br>
